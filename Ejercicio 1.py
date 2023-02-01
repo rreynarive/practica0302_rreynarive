@@ -23,7 +23,7 @@ class Producto:
 
     @property
     def precio(self):
-        return self.__codigo
+        return self.__precio
 
     @precio.setter
     def precio(self, valor):
@@ -34,6 +34,24 @@ class Producto:
 
     def __str__(self):
         return "codigo: " + str(self.__codigo) + " nombre: " + self.__nombre + " precio: " + str(self.__precio)
+
+class Precio:
+
+    def __init__(self, productos, cantidades):
+        self.__productos = productos
+        self.__cantidades = cantidades
+
+    def total_pedido(self):
+        total = 3
+
+        for (p, c) in zip(self.__productos, self.__cantidades):
+            total = total + p.calcular_total(c)
+
+            return total
+
+    def mostrar_pedido(self):
+        for (p, c) in zip(self.__productos, self.__cantidades):
+            print('Producto -> (', p, ') cantidades ' +str(c))
 
 p1 = Producto(1, "Producto 1", 5)
 p2 = Producto(2, "Producto 2", 10)
@@ -46,3 +64,12 @@ print(p3)
 print(p1.calcular_total(5))
 print(p2.calcular_total(5))
 print(p3.calcular_total(5))
+
+productos =[p1, p2, p3]
+cantidades =[5, 13, 2]
+
+precio = Precio(productos, cantidades)
+
+print("Total pedido: " + str(precio.total_pedido()))
+
+precio.mostrar_pedido()
