@@ -30,19 +30,19 @@ class Producto:
         self.__precio = valor
 
     def calcular_total(self, unidades):
-        return self.precio * unidades
+        return self.__precio * unidades
 
     def __str__(self):
         return "codigo: " + str(self.__codigo) + " nombre: " + self.__nombre + " precio: " + str(self.__precio)
 
-class Precio:
+class Pedido:
 
     def __init__(self, productos, cantidades):
         self.__productos = productos
         self.__cantidades = cantidades
 
     def total_pedido(self):
-        total = 3
+        total = 0
 
         for (p, c) in zip(self.__productos, self.__cantidades):
             total = total + p.calcular_total(c)
@@ -65,11 +65,11 @@ print(p1.calcular_total(5))
 print(p2.calcular_total(5))
 print(p3.calcular_total(5))
 
-productos =[p1, p2, p3]
-cantidades =[5, 13, 2]
+productos = [p1, p2, p3]
+cantidades = [15, 1, 1]
 
-precio = Precio(productos, cantidades)
+pedido = Pedido(productos, cantidades)
 
-print("Total pedido: " + str(precio.total_pedido()))
+print("Total pedido: " + str(pedido.total_pedido()))
 
-precio.mostrar_pedido()
+pedido.mostrar_pedido()
